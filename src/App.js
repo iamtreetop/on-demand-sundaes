@@ -1,11 +1,17 @@
-import "./App.css";
-import SummaryForm from "./pages/summary/SummaryForm.component";
+import Container from "react";
+import OrderEntry from "./pages/entry/OrderEntry";
+// import SummaryForm from "./pages/summary/SummaryForm.component";
+import { OrderDetailsProvider } from "./contexts/OrderDetails";
 
 function App() {
   return (
-    <div className="App">
-      <SummaryForm />
-    </div>
+    <Container>
+      <OrderDetailsProvider>
+        {/* summary and entry page nee dprovider */}
+        <OrderEntry />
+      </OrderDetailsProvider>
+      {/* confirmation page does not need provider */}
+    </Container>
   );
 }
 
