@@ -1,3 +1,4 @@
+import React from "react";
 import Col from "react-bootstrap/Col";
 
 const ScoopOption = ({ name, imagePath }) => {
