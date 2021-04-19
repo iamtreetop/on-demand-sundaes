@@ -3,7 +3,7 @@ import OrderEntry from "../OrderEntry";
 import { rest } from "msw";
 import { server } from "../../../mocks/server";
 
-test.only("Handles errors for scoops and toppings routes", async () => {
+test("Handles errors for scoops and toppings routes", async () => {
   // override handlers
   server.resetHandlers(
     rest.get("http://localhost:3030/scoops", (req, res, ctx) => {
