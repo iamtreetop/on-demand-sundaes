@@ -2,11 +2,18 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Popover from "react-bootstrap/popover";
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
-const SummaryForm = () => {
+const SummaryForm = ({ setOrderPhase }) => {
   const [tcChecked, setTcChecked] = useState(false);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    //pass along to the next phase
+    // the next page will handle submitting order from context.
+    setOrderPhase('completed')
+  }
+ 
   const popover = (
     <Popover id="popover-basic">
       <Popover.Content>No ice cream will actually be delivered</Popover.Content>
@@ -15,7 +22,7 @@ const SummaryForm = () => {
 
   const checkboxLabel = (
     <span>
-      I agree to 
+      I agree to
       <OverlayTrigger placement="right" overlay={popover}>
         <span style={{ color: "blue" }}> Terms and Conditions</span>
       </OverlayTrigger>
@@ -23,7 +30,7 @@ const SummaryForm = () => {
   );
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Form.Group controlId="terms-and-conditions">
         <Form.Check
           type="checkbox"

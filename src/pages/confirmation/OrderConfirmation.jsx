@@ -10,7 +10,7 @@ const OrderConfirmation = ({ setOrderPhase }) => {
 
   useEffect(() => {
     axios
-      .post("http://localhost:3030")
+      .post("http://localhost:3030/order")
       .then((res) => {
         setOrderNumber(res.data.orderNumber);
       })

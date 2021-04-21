@@ -3,7 +3,7 @@ import {
   screen,
   waitForElementToBeRemoved
 } from "@testing-library/react";
-import SummaryForm from "../SummaryForm.component";
+import SummaryForm from "../SummaryForm";
 import userEvent from "@testing-library/user-event";
 
 test("Initial conditions", () => {
