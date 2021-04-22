@@ -92,3 +92,30 @@ test("Order phases for happy path", async () => {
   await screen.findByRole("spinbutton", { name: "Vanilla" });
   await screen.findByRole("checkbox", { name: "Cherries" });
 });
+
+test("Toppings header is not on the summary page if no toppings are ordered", async () => {
+  render(<App />);
+
+  // add scoops but no toppings
+  const vanillaInput = await screen.findByRole("spinbutton", {
+    name: "Vanilla",
+  });
+  userEvent.clear(vanillaInput);
+  userEvent.type(vanillaInput, "1");
+
+  const chocolateInput = screen.getByRole("spinbutton", {
+    name: "Chocolate",
+  });
+  userEvent.clear(chocolateInput);
+  userEvent.type(chocolateInput, "1");
+
+  // click on order button to send us to sumamry page
+  const orderButton = screen.getByRole("button", { name: /order sundae/i });
+  userEvent.click(orderButton);
+
+  const scoopsHeading = screen.getByRole("heading", { name: "Scoops: $4.00" });
+  expect(scoopsHeading).toBeInTheDocument();
+
+  const toppingsHeading = screen.queryByRole("heading", { name: /toppings/i });
+  expect(toppingsHeading).not.toBeInTheDocument();
+});

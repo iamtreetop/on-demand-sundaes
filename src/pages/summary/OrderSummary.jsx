@@ -12,16 +12,26 @@ const OrderSummary = ({ setOrderPhase }) => {
     </li>
   ));
 
-  const toppingsArray = Array.from(orderDetails.toppings.keys());
-  const toppingsList = toppingsArray.map((key) => <li key={key}>{key}</li>);
+  let toppingsDisplay = null;
+
+  if (orderDetails.toppings.size > 0) {
+    const toppingsArray = Array.from(orderDetails.toppings.keys());
+    const toppingsList = toppingsArray.map((key) => <li key={key}>{key}</li>);
+
+    toppingsDisplay = (
+      <>
+        <h2>Toppings: {orderDetails.totals.toppings}</h2>
+        <ul>{toppingsList}</ul>
+      </>
+    );
+  }
 
   return (
     <div>
       <h1>Order Summary</h1>
       <h2>Scoops: {orderDetails.totals.scoops}</h2>
       <ul>{scoopsList}</ul>
-      <h2>Toppings: {orderDetails.totals.toppings}</h2>
-      <ul>{toppingsList}</ul>
+      {toppingsDisplay}
       <SummaryForm setOrderPhase={setOrderPhase} />
     </div>
   );
