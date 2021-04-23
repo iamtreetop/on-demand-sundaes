@@ -4,7 +4,7 @@ import { rest } from "msw";
 
 import OrderConfirmation from "../OrderConfirmation";
 
-test.only("Error response from server when submitting order", async () => {
+test("Error response from server when submitting order", async () => {
   // override default msw response for options endpoint with error response
   server.resetHandlers(
     rest.post("http://localhost:3030/order", (req, res, ctx) => {
