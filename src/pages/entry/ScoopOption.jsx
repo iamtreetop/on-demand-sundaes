@@ -7,17 +7,19 @@ const ScoopOption = ({ name, imagePath, updateItemCount }) => {
   const [isValid, setIsValid] = useState(true);
   const handleChange = (e) => {
     const currVal = e.target.value;
-    updateItemCount(name, currVal);
 
     // make sure to use number not string
     const currValFloat = parseFloat(currVal);
+    const valueIsValid =
+      currValFloat >= 0 &&
+      currValFloat <= 10 &&
+      Math.floor(currValFloat) === currValFloat;
 
     // validate
-    setIsValid(
-      currValFloat >= 0 &&
-        currValFloat <= 10 &&
-        Math.floor(currValFloat) === currValFloat
-    );
+    setIsValid(valueIsValid);
+
+    // only update context if value is valid
+    if (valueIsValid) updateItemCount(name, currVal);
   };
 
   return (
