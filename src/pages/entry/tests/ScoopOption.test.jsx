@@ -2,7 +2,7 @@ import { render, screen } from "../../../test-utils/testing-library-utils";
 import ScoopOption from "../ScoopOption";
 import userEvent from "@testing-library/user-event";
 
-test.only("Scoop count should be positive integer and in range", () => {
+test("Scoop count should be positive integer and in range", () => {
   render(<ScoopOption name="" imagePath="" updateItemCount={jest.fn()} />);
 
   // expect input to be invalid with negative number
